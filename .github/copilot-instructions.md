@@ -5,7 +5,7 @@ This repo is an Astro 5 + MDX site with optional React "islands," Tailwind CSS v
 ## Architecture and key files
 
 - Astro + MDX content
-  - Entry content: `src/paper.mdx` (MDX with YAML frontmatter). Frontmatter keys: `title`, `authors`, `conference`, `notes`, `links`, `description`, `favicon`, `thumbnail`, `theme`.
+  - Entry content: `src/paper.mdx` (MDX with YAML frontmatter). Frontmatter keys: `title`, `authors`, `institution`, `notes`, `links`, `description`, `favicon`, `thumbnail`, `theme`.
   - Layout: `src/pages/index.astro` imports the content and frontmatter from `src/paper.mdx`, sets `<html data-theme>`, OpenGraph tags, favicon, and uses `import.meta.env.BASE_URL` to prefix public assets for GitHub Pages.
 - Components (examples)
   - `Figure.astro` provides a consistent figure/caption pattern via named slots `figure` and `caption`.
