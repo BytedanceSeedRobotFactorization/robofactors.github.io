@@ -37,27 +37,48 @@ import Wide from "./components/Wide.astro";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/starwind/tabs";
 import { Comparison } from "./components/Comparison.tsx";
 
-import dogsDiffc from "./assets/dogs-diffc.png";
+import teaser_v1 from "./assets/teaser_v1.png";
+import fac from "./assets/fac.jpeg";
 import outside from "./assets/outside.mp4";
 
-<Video src={dogsDiffc} />
+<Video src={outside} />
 
 ## Abstract
 
 XXX
 
 <Figure>
-  <Picture slot="figure" src={dogsDiffc} alt="XXX" />
+  <Picture slot="figure" src={teaser_v1} alt="XXX" />
   <Fragment slot="caption">XXXX.</Fragment>
 </Figure>
 
 ## Factor-Aware Compositional Iterative Learning 
 
 XXX
+<Figure>
+  <Picture slot="figure" src={fac} alt="factor iteration" />
+  <Fragment slot="caption">XXXX.</Fragment>
+</Figure>
+
 
 ### Factorized State Representation
 
 XXXX
+
+<TwoColumns>
+  <Figure slot="left">
+    <div slot="figure" style="width: 250px; margin: 0 auto;">
+      <Picture src={fac} alt="factor iteration" />
+    </div>
+    <Fragment slot="caption">XXXX.</Fragment>
+  </Figure>
+  <Figure slot="right">
+    <div slot="figure" style="width: 250px; margin: 0 auto;">
+      <Picture src={fac} alt="factor iteration" />
+    </div>
+    <Fragment slot="caption">XXXX.</Fragment>
+  </Figure>
+</TwoColumns>
 
 ### Factor-Wise Composition and Generalization
 
