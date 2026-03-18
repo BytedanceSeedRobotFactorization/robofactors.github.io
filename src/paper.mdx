@@ -1,15 +1,21 @@
 ---
 title: "Towards Generalizable Robotic Data Flywheel: High-Dimensional Factorization and Composition"
 authors:
-  - name: RoboFactor Team
-    notes: ["*"]
-  - name: Author Two
+  - name: Yuyang Xiao
     notes: ["*", †]
-  - name: Author Three
+  - name: Yifei Zhou
     notes: ["*"]
-  - name: Author Four
+  - name: Haoran Wang
+    notes: []
+  - name: Wenxuan Ou
+  - name: Yuxiao Liu
+    notes: [†]
 institution: ByteDance Seed
 notes:
+  - symbol: "*"
+    text: Equal contribution
+  - symbol: †
+    text: Corresponding authors
 links:
   - name: arXiv
     url: 
@@ -37,7 +43,7 @@ import Wide from "./components/Wide.astro";
 
 
 import teaser_v1 from "./assets/teaser_v1.png";
-import outside from "./assets/outside.mp4";
+import demo from "./assets/demo.mp4";
 
 import o_open_1_head_rgb from "./assets/videos/o/open_1_head_rgb.mp4"
 import o_open_2_head_rgb from "./assets/videos/o/open_2_head_rgb.mp4"
@@ -87,7 +93,7 @@ import oae_pp_4_head_rgb from "./assets/videos/oae/pp_4_head_rgb.mp4"
 import oae_pp_5_head_rgb from "./assets/videos/oae/pp_5_head_rgb.mp4"
 import oae_pp_6_head_rgb from "./assets/videos/oae/pp_6_head_rgb.mp4"
 
-<Video src={outside} />
+<Video src={demo} />
 
 ## Abstract
 
@@ -145,12 +151,18 @@ XXX
           <Video src={o_open_1_head_rgb} />
           <Video src={o_close_1_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Diffuse</div>
+        </Fragment>
       </td>
       <td>
         <div class="flex max-w-[10rem]">
           <Video src={o_open_3_head_rgb} />
           <Video src={o_close_3_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Specular</div>
+        </Fragment>
       </td>
     </tr>
     
@@ -161,12 +173,18 @@ XXX
           <Video src={o_open_1_head_rgb} />
           <Video src={o_close_1_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Large</div>
+        </Fragment>
       </td>
       <td>
         <div class="flex max-w-[10rem]">
           <Video src={o_open_2_head_rgb} />
           <Video src={o_close_2_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Small</div>
+        </Fragment>
       </td>
     </tr>
   </tbody>
@@ -280,30 +298,25 @@ XXX
         <div class="flex max-w-[15rem]">
           <Video src={o_pp_4_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Transparent</div>
+        </Fragment>
       </td>
       <td>
         <div class="flex max-w-[15rem]">
           <Video src={o_pp_3_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Specular</div>
+        </Fragment>
       </td>
       <td>
         <div class="flex max-w-[15rem]">
           <Video src={o_pp_5_head_rgb} />
         </div>
-      </td>
-    </tr>
-    
-    <tr>
-      <th>Size</th>
-      <td>
-        <div class="flex max-w-[15rem]">
-          <Video src={o_pp_4_head_rgb} />
-        </div>
-      </td>
-      <td>
-        <div class="flex max-w-[15rem]">
-          <Video src={o_pp_1_head_rgb} />
-        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Absorptive</div>
+        </Fragment>
       </td>
     </tr>
 
@@ -313,11 +326,25 @@ XXX
         <div class="flex max-w-[15rem]">
           <Video src={o_pp_4_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Cylindrial</div>
+        </Fragment>
       </td>
       <td>
         <div class="flex max-w-[15rem]">
           <Video src={o_pp_6_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Rod-like</div>
+        </Fragment>
+      </td>
+      <td>
+        <div class="flex max-w-[15rem]">
+          <Video src={o_pp_2_head_rgb} />
+        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Irregular</div>
+        </Fragment>
       </td>
     </tr>
   </tbody>
