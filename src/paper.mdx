@@ -2,7 +2,9 @@
 title: "Towards Generalizable Robotic Data Flywheel: High-Dimensional Factorization and Composition"
 authors:
   - name: Yuyang Xiao
+  - name: Yuyang Xiao
     notes: ["*", †]
+  - name: Yifei Zhou
   - name: Yifei Zhou
     notes: ["*"]
   - name: Haoran Wang
@@ -10,8 +12,17 @@ authors:
   - name: Wenxuan Ou
   - name: Yuxiao Liu
     notes: [†]
+  - name: Haoran Wang
+    notes: []
+  - name: Wenxuan Ou
+  - name: Yuxiao Liu
+    notes: [†]
 institution: ByteDance Seed
 notes:
+  - symbol: "*"
+    text: Equal contribution
+  - symbol: †
+    text: Corresponding authors
   - symbol: "*"
     text: Equal contribution
   - symbol: †
@@ -43,6 +54,7 @@ import Wide from "./components/Wide.astro";
 
 
 import teaser_v1 from "./assets/teaser_v1.png";
+import demo from "./assets/demo.mp4";
 import demo from "./assets/demo.mp4";
 
 import o_open_1_head_rgb from "./assets/videos/o/open_1_head_rgb.mp4"
@@ -106,6 +118,7 @@ import left_warm_p5_pp_head_rgb from "./assets/videos/oae/left_warm_p5_pp_head_r
 import left_cold_p2_pp_head_rgb from "./assets/videos/oae/left_cold_p2_pp_head_rgb.mp4"
 import left_cold_p4_pp_head_rgb from "./assets/videos/oae/left_cold_p4_pp_head_rgb.mp4"
 
+<Video src={demo} />
 <Video src={demo} />
 
 ## Abstract
@@ -359,6 +372,9 @@ Notice: The texture of hinged object is defined by the texture of its manipulate
         <Fragment slot="caption">
           <div class="text-center">Transparent</div>
         </Fragment>
+        <Fragment slot="caption">
+          <div class="text-center">Transparent</div>
+        </Fragment>
       </td>
       <td>
         <div class="flex max-w-[15rem]">
@@ -367,11 +383,17 @@ Notice: The texture of hinged object is defined by the texture of its manipulate
         <Fragment slot="caption">
           <div class="text-center">Specular</div>
         </Fragment>
+        <Fragment slot="caption">
+          <div class="text-center">Specular</div>
+        </Fragment>
       </td>
       <td>
         <div class="flex max-w-[15rem]">
           <Video src={o_pp_5_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Absorptive</div>
+        </Fragment>
         <Fragment slot="caption">
           <div class="text-center">Absorptive</div>
         </Fragment>
@@ -387,11 +409,25 @@ Notice: The texture of hinged object is defined by the texture of its manipulate
         <Fragment slot="caption">
           <div class="text-center">Cylindrial</div>
         </Fragment>
+        <Fragment slot="caption">
+          <div class="text-center">Cylindrial</div>
+        </Fragment>
       </td>
       <td>
         <div class="flex max-w-[15rem]">
           <Video src={o_pp_6_head_rgb} />
         </div>
+        <Fragment slot="caption">
+          <div class="text-center">Rod-like</div>
+        </Fragment>
+      </td>
+      <td>
+        <div class="flex max-w-[15rem]">
+          <Video src={o_pp_2_head_rgb} />
+        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Irregular</div>
+        </Fragment>
         <Fragment slot="caption">
           <div class="text-center">Rod-like</div>
         </Fragment>
