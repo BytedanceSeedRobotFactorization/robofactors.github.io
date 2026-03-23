@@ -135,6 +135,189 @@ XXX
 
 ### Factorized State Representation
 
+XXXX
+
+#### Object Factors
+
+<Table>
+  <thead>
+      <tr>
+        <th>Factor</th>
+        <th>Dimension</th>
+        <th>Description</th>
+        <th>Example Objects</th>
+      </tr>
+    </thead>
+
+  <tbody>
+    <tr>
+      <th>Texture ($T$)</th>
+      <td>
+        <div class="flex">Transparent</div>
+        <div class="flex">Specular</div>
+        <div class="flex">Diffuse</div>
+        <div class="flex">Absorptive</div>
+      </td>
+      <td>
+        <div class="flex">Light transmission with refraction</div>
+        <div class="flex">Mirror-like surface reflection</div>
+        <div class="flex">Rough surface with uniform reflection</div>
+        <div class="flex">Strong light absorption</div>
+      </td>
+      <td>
+        <div class="flex">Transparent water cup</div>
+        <div class="flex">Aluminum can</div>
+        <div class="flex">Metal bowl, Foil tray</div>
+        <div class="flex">Towel, Tape roll</div>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Geometry ($G$)</th>
+      <td>
+        <div class="flex">Cylindrical</div>
+        <div class="flex">Dish-like</div>
+        <div class="flex">Rod-like</div>
+        <div class="flex">Irregular</div>
+      </td>
+      <td>
+        <div class="flex">Axis-symmetric geometry</div>
+        <div class="flex">The overall shape is concave</div>
+        <div class="flex">Large aspect ratio</div>
+        <div class="flex">No specific shape</div>
+      </td>
+      <td>
+        <div class="flex">Cup, Aluminum can</div>
+        <div class="flex">Tray, Plate</div>
+        <div class="flex">Knife, Fork</div>
+        <div class="flex">Towel, Tissue</div>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Size ($S$)</th>
+      <td>
+        <div class="flex">Small</div>
+        <div class="flex">Medium</div>
+        <div class="flex">Large</div>
+      </td>
+      <td>
+        <div class="flex">Requires high grasp accuracy</div>
+        <div class="flex">Easy single-grasp objects</div>
+        <div class="flex">Requires wider grasping volume</div>
+      </td>
+      <td>
+        <div class="flex">Tape roll</div>
+        <div class="flex">Water cup</div>
+        <div class="flex">Ray's Chips, Towel</div>
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+#### Action Factors
+
+<Table>
+  <thead>
+      <tr>
+        <th>Factor</th>
+        <th>Dimension</th>
+        <th>Description</th>
+        <th>Range</th>
+      </tr>
+    </thead>
+
+  <tbody>
+    <tr>
+      <th>Position</th>
+      <td>
+        <div class="flex">$x$</div>
+        <div class="flex">$y$</div>
+        <div class="flex">$z$</div>
+      </td>
+      <td>
+        <div class="flex">Forward direction of the robot</div>
+        <div class="flex">Left direction of the robot</div>
+        <div class="flex">Up direction of the robot</div>
+      </td>
+      <td>
+        <div class="flex">workspace</div>
+        <div class="flex">workspace</div>
+        <div class="flex">workspace</div>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Oridntation</th>
+      <td>
+        <div class="flex">roll($r$)</div>
+        <div class="flex">pitch($p$)</div>
+        <div class="flex">yaw($y$)</div>
+      </td>
+      <td>
+        <div class="flex">Rotation around $x$-axis</div>
+        <div class="flex">Rotation around $y$-axis</div>
+        <div class="flex">Rotation around $z$-axis</div>
+      </td>
+      <td>
+        <div class="flex">$[-\pi, \pi)$</div>
+        <div class="flex">$[-\pi, \pi)$</div>
+        <div class="flex">$[-\pi, \pi)$</div>
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
+#### Environment Factors
+
+<Table>
+  <thead>
+      <tr>
+        <th>Factor</th>
+        <th>Dimension</th>
+        <th>Description</th>
+        <th>Examples</th>
+      </tr>
+    </thead>
+
+  <tbody>
+    <tr>
+      <th>Macro</th>
+      <td>
+        <div class="flex">Light Intensiry($I$)</div>
+        <div class="flex">Color Temperature($T$)</div>
+        <div class="flex">Shadow Direction($D$)</div>
+      </td>
+      <td>
+        <div class="flex">Overall brightness of the scene</div>
+        <div class="flex">Warm or cool illumination</div>
+        <div class="flex">Direction of the shadow</div>
+      </td>
+      <td>
+        <div class="flex">Normal Indoor(200-500 lux)($I$)</div>
+        <div class="flex">Warm Light(2700K - 3500K)</div>
+        <div class="flex">Left, Mid, Right</div>
+      </td>
+    </tr>
+
+    <tr>
+      <th>Micro</th>
+      <td>
+        <div class="flex">Surface Material($M$)</div>
+        <div class="flex">Background Clutter($C$)</div>
+      </td>
+      <td>
+        <div class="flex">The material of local scenes</div>
+        <div class="flex">The level of clutter in the scene</div>
+      </td>
+      <td>
+        <div class="flex">Transparent, Absorptive</div>
+        <div class="flex">Clean, Light Clutter, Heavy Clutter</div>
+      </td>
+    </tr>
+  </tbody>
+</Table>
+
 The initial demonstrations are sampled along the main diagonal of the factor space, with an equal number of samples per composition. 
 
 <Figure>
@@ -142,7 +325,7 @@ The initial demonstrations are sampled along the main diagonal of the factor spa
     <Picture src={fig3} alt="fig3"/>
   </div>
   <Fragment slot="caption">
-    **Demonstrations collected for iteration 1 under $\mathcal{O}$ space.** 
+    **Demonstrations collected for iteration 1 in Object space.** 
     
     Color represents the success rate(SR). *Black dots* mark the compositions included in the dataset.
   </Fragment>
@@ -155,7 +338,9 @@ The initial demonstrations are sampled along the main diagonal of the factor spa
 XXXX
 
 <Figure>
-  <Picture slot="figure" src={fig4} alt="fig4" />
+  <div slot="figure" class="flex max-w-[40rem]">
+    <Picture src={fig4} alt="fig4"/>
+  </div>
   <Fragment slot="caption">
     **Iterative Search Procedure in Object Space.**
     
