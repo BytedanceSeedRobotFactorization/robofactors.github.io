@@ -120,8 +120,6 @@ import left_cold_p4_pp_head_rgb from "./assets/videos/oae/left_cold_p4_pp_head_r
 The lack of sufficiently diverse data, coupled with limited data efficiency, remains a major bottleneck for generalist robotic models, yet systematic strategies for collecting and curating such data are not fully explored. One major challenge in achieving generalization lies in the inherently high-dimensional nature of robotic data. Task diversity arises from implicit factors that are sparsely distributed across multiple dimensions and are difficult to define explicitly. 
 
 To address this challenge, we introduce **F-ACIL**, a heuristic **F**actor-**A**ware **C**ompositional **I**terative **L**earning framework for data factorization and compositional generalization. F-ACIL decomposes the data distribution into structured factor spaces such as object, action, and environment. Based on the factorized formulation, we develop a factor-wise data collection and a iterative training paradigm that promotes compositional generalization over the high-dimensional factor space, leading to more effective utilization of real-world robotic demonstrations. With extensive real-world experiments, we show that F-ACIL can achieve more than **45%** performance gains with **5~10 times** fewer demonstrations comparing to that of which without the strategy. 
-
-The results suggest that structured factorization offers a practical pathway toward efficient compositional generalization in real-world robotic learning. We believe F-ACIL can inspire more systematic research on building generalizable robotic data flywheel strategies.
 </div>
 
 <Figure>
@@ -137,6 +135,7 @@ XXX
 
 XXXX
 
+{/*
 #### Object Factors
 
 <Table>
@@ -317,6 +316,8 @@ XXXX
     </tr>
   </tbody>
 </Table>
+
+*/}
 
 The initial demonstrations are sampled along the main diagonal of the factor space, with an equal number of samples per composition. 
 
@@ -726,8 +727,7 @@ Notice: The texture of hinged object is defined by the texture of its manipulate
 
 ## Conclusion
 
-XXXX GR3[@cheang2025gr3technicalreport]
-
+In this work, we present **F-ACIL** to improve data efficiency in robot policy learning with factorized state representations and sequential factor-wise exploration. By decomposing the high-dimensional state space into object, action, and environment factor spaces, **F-ACIL** enables more systematic data collection.
 
 ## BibTeX citation
 
@@ -739,7 +739,3 @@ XXXX GR3[@cheang2025gr3technicalreport]
   howpublished = "/url{XXX}",
 }
 ```
-
-### Reference
-
-[^ref]
