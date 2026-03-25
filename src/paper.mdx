@@ -26,7 +26,7 @@ links:
 theme: device
 
 # This is the icon that appears in the user's browser tab. To customize, change the favicon.svg file in /public/, or add your own file to /public/ and change the filename here.
-favicon: favicon.svg
+#favicon: favicon.svg
 
 # These keys are optional. If a link to your project page is in a Google search result, text message, or social media post, it will often appear as a "link preview card" based on its title, description, favicon, and thumbnail. After you publish your page, you can double check that these previews look right using [this tool](https://linkpreview.xyz/)
 description: "Towards Generalizable Robotic Data Flywheel: High-Dimensional Factorization and Composition"
@@ -43,7 +43,7 @@ import ThreeColumns from "./components/ThreeColumns.astro";
 import Wide from "./components/Wide.astro";
 
 
-import teaser_v3 from "./assets/teaser_v3.png";
+import teaser_v5 from "./assets/teaser_v5.png";
 import fig3 from "./assets/fig3.png";
 import fig4 from "./assets/fig4.png";
 import strategy from "./assets/strategy.png";
@@ -122,15 +122,19 @@ import left_cold_p4_pp_head_rgb from "./assets/videos/oae/left_cold_p4_pp_head_r
 <div class="text-justify">
 The lack of sufficiently diverse data, coupled with limited data efficiency, remains a major bottleneck for generalist robotic models, yet systematic strategies for collecting and curating such data are not fully explored. One major challenge in achieving generalization lies in the inherently high-dimensional nature of robotic data. Task diversity arises from implicit factors that are sparsely distributed across multiple dimensions and are difficult to define explicitly. 
 
-To address this challenge, we introduce **F-ACIL**, a heuristic **F**actor-**A**ware **C**ompositional **I**terative **L**earning framework for data factorization and compositional generalization. F-ACIL decomposes the data distribution into structured factor spaces such as object, action, and environment. Based on the factorized formulation, we develop a factor-wise data collection and a iterative training paradigm that promotes compositional generalization over the high-dimensional factor space, leading to more effective utilization of real-world robotic demonstrations. With extensive real-world experiments, we show that F-ACIL can achieve more than **45%** performance gains with **5~10 times** fewer demonstrations comparing to that of which without the strategy. 
+To address this challenge, we introduce **F-ACIL**, a heuristic **F**actor-**A**ware **C**ompositional **I**terative **L**earning framework for data factorization and compositional generalization. F-ACIL decomposes the data distribution into structured factor spaces such as object, action, and environment. Based on the factorized formulation, we develop a factor-wise data collection and a iterative training paradigm that promotes compositional generalization over the high-dimensional factor space, leading to more effective utilization of real-world robotic demonstrations. 
 </div>
 
 <Figure>
-  <Picture slot="figure" src={teaser_v3} alt="teaser" />
+  <Picture slot="figure" src={teaser_v5} alt="teaser" />
   <Fragment slot="caption">An overview of F-ACIL.</Fragment>
 </Figure>
 
+
+
 ## Methods 
+
+{/*
 
 <div class="text-justify">
 By explicitly decomposing robotic manipulation into three factors: Object, Action, and Environment, we introduces a factorized representation to systematically expand the distribution of training data in real-world robotic learning. Guided by the factor-wise compositional generalization, we present an iterative data collection strategy.
@@ -150,200 +154,16 @@ $$
 where $\mathcal{O}$ denotes object-related factors, $\mathcal{A}$ captures action-related factors encoding spatial relationships, and $\mathcal{E}$ represents environmental factors. 
 </div>
 
-
-{/*
-#### **F-ACIL**-*Object*
-
-<Table>
-  <thead>
-      <tr>
-        <th>Factor</th>
-        <th>Dimension</th>
-        <th>Description</th>
-        <th>Example Objects</th>
-      </tr>
-    </thead>
-
-  <tbody>
-    <tr>
-      <th>Texture ($T$)</th>
-      <td>
-        <div class="flex">Transparent</div>
-        <div class="flex">Specular</div>
-        <div class="flex">Diffuse</div>
-        <div class="flex">Absorptive</div>
-      </td>
-      <td>
-        <div class="flex">Light transmission with refraction</div>
-        <div class="flex">Mirror-like surface reflection</div>
-        <div class="flex">Rough surface with uniform reflection</div>
-        <div class="flex">Strong light absorption</div>
-      </td>
-      <td>
-        <div class="flex">Transparent water cup</div>
-        <div class="flex">Aluminum can</div>
-        <div class="flex">Metal bowl, Foil tray</div>
-        <div class="flex">Towel, Tape roll</div>
-      </td>
-    </tr>
-
-    <tr>
-      <th>Geometry ($G$)</th>
-      <td>
-        <div class="flex">Cylindrical</div>
-        <div class="flex">Dish-like</div>
-        <div class="flex">Rod-like</div>
-        <div class="flex">Irregular</div>
-      </td>
-      <td>
-        <div class="flex">Axis-symmetric geometry</div>
-        <div class="flex">The overall shape is concave</div>
-        <div class="flex">Large aspect ratio</div>
-        <div class="flex">No specific shape</div>
-      </td>
-      <td>
-        <div class="flex">Cup, Aluminum can</div>
-        <div class="flex">Tray, Plate</div>
-        <div class="flex">Knife, Fork</div>
-        <div class="flex">Towel, Tissue</div>
-      </td>
-    </tr>
-
-    <tr>
-      <th>Size ($S$)</th>
-      <td>
-        <div class="flex">Small</div>
-        <div class="flex">Medium</div>
-        <div class="flex">Large</div>
-      </td>
-      <td>
-        <div class="flex">Requires high grasp accuracy</div>
-        <div class="flex">Easy single-grasp objects</div>
-        <div class="flex">Requires wider grasping volume</div>
-      </td>
-      <td>
-        <div class="flex">Tape roll</div>
-        <div class="flex">Water cup</div>
-        <div class="flex">Lay's Chips, Towel</div>
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-#### **F-ACIL**-*Action*
-
-<Table>
-  <thead>
-      <tr>
-        <th>Factor</th>
-        <th>Dimension</th>
-        <th>Description</th>
-        <th>Range</th>
-      </tr>
-    </thead>
-
-  <tbody>
-    <tr>
-      <th>Position</th>
-      <td>
-        <div class="flex">$x$</div>
-        <div class="flex">$y$</div>
-        <div class="flex">$z$</div>
-      </td>
-      <td>
-        <div class="flex">Forward direction of the robot</div>
-        <div class="flex">Left direction of the robot</div>
-        <div class="flex">Up direction of the robot</div>
-      </td>
-      <td>
-        <div class="flex">workspace</div>
-        <div class="flex">workspace</div>
-        <div class="flex">workspace</div>
-      </td>
-    </tr>
-
-    <tr>
-      <th>Oridntation</th>
-      <td>
-        <div class="flex">roll($r$)</div>
-        <div class="flex">pitch($p$)</div>
-        <div class="flex">yaw($y$)</div>
-      </td>
-      <td>
-        <div class="flex">Rotation around $x$-axis</div>
-        <div class="flex">Rotation around $y$-axis</div>
-        <div class="flex">Rotation around $z$-axis</div>
-      </td>
-      <td>
-        <div class="flex">$[-\pi, \pi)$</div>
-        <div class="flex">$[-\pi, \pi)$</div>
-        <div class="flex">$[-\pi, \pi)$</div>
-      </td>
-    </tr>
-  </tbody>
-</Table>
-
-#### **F-ACIL**-*Environment*
-
-<Table>
-  <thead>
-      <tr>
-        <th>Factor</th>
-        <th>Dimension</th>
-        <th>Description</th>
-        <th>Examples</th>
-      </tr>
-    </thead>
-
-  <tbody>
-    <tr>
-      <th>Macro</th>
-      <td>
-        <div class="flex">Light Intensiry($I$)</div>
-        <div class="flex">Color Temperature($T$)</div>
-        <div class="flex">Shadow Direction($D$)</div>
-      </td>
-      <td>
-        <div class="flex">Overall brightness of the scene</div>
-        <div class="flex">Warm or cool illumination</div>
-        <div class="flex">Direction of the shadow</div>
-      </td>
-      <td>
-        <div class="flex">Normal Indoor(200-500 lux)($I$)</div>
-        <div class="flex">Warm Light(2700K - 3500K)</div>
-        <div class="flex">Left, Mid, Right</div>
-      </td>
-    </tr>
-
-    <tr>
-      <th>Micro</th>
-      <td>
-        <div class="flex">Surface Material($M$)</div>
-        <div class="flex">Background Clutter($C$)</div>
-      </td>
-      <td>
-        <div class="flex">The material of local scenes</div>
-        <div class="flex">The level of clutter in the scene</div>
-      </td>
-      <td>
-        <div class="flex">Transparent, Absorptive</div>
-        <div class="flex">Clean, Light Clutter, Heavy Clutter</div>
-      </td>
-    </tr>
-  </tbody>
-</Table>
+### Factor-Wise Composition and Generalization
 
 */}
-
-
-
-### Factor-Wise Composition and Generalization
 
 <Figure>
   <div slot="figure" class="flex max-w-[20rem]">
     <Picture src={fig3} alt="fig3"/>
   </div>
   <Fragment slot="caption">
+    Demonstrations collected for initial iteration in Object space.
     Demonstrations collected for initial iteration in Object space.
   </Fragment>
 </Figure>
@@ -354,6 +174,7 @@ where $\mathcal{O}$ denotes object-related factors, $\mathcal{A}$ captures actio
   </div>
   <Fragment slot="caption">
     Iterative Search Procedure in Object Space.
+    Iterative Search Procedure in Object Space.
   </Fragment>
 </Figure>
 
@@ -363,12 +184,12 @@ The hierarchical data collection strategy includes:
 
 The strategy enables scalable exploration of the full factor space while mitigating combinatorial explosion.
 
+
+
 ## Experiment
 
 <div class="text-justify">
-We show how **F-ACIL** helps to achieve compositional generalization across high-dimensional spaces on two representative manipulation skill families: **Pick-and-Place** and **Open-and-Close**. 
-
-We consider three groups of strategies to evaluate the improvement in data efficiency and the performance differences:
+We show how **F-ACIL** helps to achieve compositional generalization across high-dimensional spaces on two representative manipulation skill families: **Pick-and-Place** and **Open-and-Close**. We consider three groups of strategies to evaluate the improvement in data efficiency and the performance differences:
 
 1.  **F-ACIL-Factors-Ratio group**: Based on the **F-ACIL** data collection strategy, constructs demonstrations by progressively increasing the coverage of task-relevant factors while controlling the ratio among factor spaces.
 
@@ -415,131 +236,117 @@ Though the model performance improves proportional to the dataset size according
 
 Notice: The texture of hinged object is defined by the texture of its manipulated component.
 
-<Wide>
-  <Table>
-    <tbody>
-      <tr>
-        <th>Texture</th>
-        <td>
-          <div class="flex max-w-[9rem]">
-            <Video src={o_open_1_head_rgb} />
-            <Video src={o_close_1_head_rgb} />
-          </div>
-          <Fragment slot="caption">
-            <div class="text-center">Specular</div>
-          </Fragment>
-        </td>
-        <td>
-          <div class="flex max-w-[9rem]">
-            <Video src={o_open_4_head_rgb} />
-            <Video src={o_close_4_head_rgb} />
-          </div>
-          <Fragment slot="caption">
-            <div class="text-center">Diffuse</div>
-          </Fragment>
-        </td>
-        <td>
-          <div class="flex max-w-[9rem]">
-            <Video src={o_open_3_head_rgb} />
-            <Video src={o_close_3_head_rgb} />
-          </div>
-          <Fragment slot="caption">
-            <div class="text-center">Transparent</div>
-          </Fragment>
-        </td>
-      </tr>
-      
-      <tr>
-        <th>Size</th>
-        <td>
-          <div class="flex max-w-[9rem]">
-            <Video src={o_open_1_head_rgb} />
-            <Video src={o_close_1_head_rgb} />
-          </div>
-          <Fragment slot="caption">
-            <div class="text-center">Large</div>
-          </Fragment>
-        </td>
-        <td>
-          <div class="flex max-w-[9rem]">
-            <Video src={o_open_5_head_rgb} />
-            <Video src={o_close_5_head_rgb} />
-          </div>
-          <Fragment slot="caption">
-            <div class="text-center">Medium</div>
-          </Fragment>
-        </td>
-        <td>
-          <div class="flex max-w-[9rem]">
-            <Video src={o_open_2_head_rgb} />
-            <Video src={o_close_2_head_rgb} />
-          </div>
-          <Fragment slot="caption">
-            <div class="text-center">Small</div>
-          </Fragment>
-        </td>
-      </tr>
-    </tbody>
-  </Table>
-</Wide>
+<Table>
+  <tbody>
+    <tr>
+      <th>Texture</th>
+      <td>
+        <div class="flex max-w-[7rem]">
+          <Video src={o_open_1_head_rgb} />
+          <Video src={o_close_1_head_rgb} />
+        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Specular</div>
+        </Fragment>
+      </td>
+      <td>
+        <div class="flex max-w-[7rem]">
+          <Video src={o_open_4_head_rgb} />
+          <Video src={o_close_4_head_rgb} />
+        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Diffuse</div>
+        </Fragment>
+      </td>
+      <td>
+        <div class="flex max-w-[7rem]">
+          <Video src={o_open_3_head_rgb} />
+          <Video src={o_close_3_head_rgb} />
+        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Transparent</div>
+        </Fragment>
+      </td>
+    </tr>
+    
+    <tr>
+      <th>Size</th>
+      <td>
+        <div class="flex max-w-[7rem]">
+          <Video src={o_open_1_head_rgb} />
+          <Video src={o_close_1_head_rgb} />
+        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Large</div>
+        </Fragment>
+      </td>
+      <td>
+        <div class="flex max-w-[7rem]">
+          <Video src={o_open_5_head_rgb} />
+          <Video src={o_close_5_head_rgb} />
+        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Medium</div>
+        </Fragment>
+      </td>
+      <td>
+        <div class="flex max-w-[7rem]">
+          <Video src={o_open_2_head_rgb} />
+          <Video src={o_close_2_head_rgb} />
+        </div>
+        <Fragment slot="caption">
+          <div class="text-center">Small</div>
+        </Fragment>
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### **F-ACIL**-*Action*
-<Wide>
-  <Table>
-    <thead>
-      <tr>
-        <th>Left</th>
-        <th>Middle</th>
-        <th>Right</th>
-      </tr>
-    </thead>
+<Table>
+  <thead>
+    <tr>
+      <th>Left</th>
+      <th>Middle</th>
+      <th>Right</th>
+    </tr>
+  </thead>
 
-    <tbody>
-      <tr>
-        <td>
-          <div class="flex max-w-[10rem]">
-            <Video src={oa_open_2_head_rgb} />
-            <Video src={oa_close_2_head_rgb} />
-          </div>
-        </td>
-        <td>
-          <div class="flex max-w-[10rem]">
-            <Video src={oa_open_5_head_rgb} />
-            <Video src={oa_close_5_head_rgb} />
-          </div>
-        </td>
-        <td>
-          <div class="flex max-w-[10rem]">
-            <Video src={oa_open_3_head_rgb} />
-            <Video src={oa_close_3_head_rgb} />
-          </div>
-        </td>
-      </tr>
-      
-      <tr>
-        <td>
-          <div class="flex max-w-[10rem]">
-            <Video src={oa_open_4_head_rgb} />
-            <Video src={oa_close_4_head_rgb} />
-          </div>
-        </td>
-        <td>
-          <div class="flex max-w-[10rem]">
-            <Video src={middle_down_open_6_head_rgb} />
-            <Video src={middle_down_close_6_head_rgb} />
-          </div>
-        </td>
-        <td>
-          <div class="flex max-w-[10rem]">
-            <Video src={oa_open_1_head_rgb} />
-            <Video src={oa_close_1_head_rgb} />
-          </div>
-        </td>
-      </tr>
-      
-    </tbody>
-  </Table>
-</Wide>
+  <tbody>
+    <tr>
+      <td>
+        <div class="flex max-w-[8rem]">
+          <Video src={oa_open_2_head_rgb} />
+          <Video src={oa_close_2_head_rgb} />
+        </div>
+        <div class="flex max-w-[8rem]">
+          <Video src={oa_open_4_head_rgb} />
+          <Video src={oa_close_4_head_rgb} />
+        </div>
+      </td>
+      <td>
+        <div class="flex max-w-[8rem]">
+          <Video src={oa_open_5_head_rgb} />
+          <Video src={oa_close_5_head_rgb} />
+        </div>
+        <div class="flex max-w-[8rem]">
+          <Video src={middle_down_open_6_head_rgb} />
+          <Video src={middle_down_close_6_head_rgb} />
+        </div>
+      </td>
+      <td>
+        <div class="flex max-w-[8rem]">
+          <Video src={oa_open_3_head_rgb} />
+          <Video src={oa_close_3_head_rgb} />
+        </div>
+        <div class="flex max-w-[8rem]">
+          <Video src={oa_open_1_head_rgb} />
+          <Video src={oa_close_1_head_rgb} />
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</Table>
 
 #### **F-ACIL**-*Environment*
 
@@ -668,7 +475,6 @@ Notice: The texture of hinged object is defined by the texture of its manipulate
 </Table>
 
 #### **F-ACIL**-*Action*
-
 <Table>
   <thead>
     <tr>
@@ -684,31 +490,22 @@ Notice: The texture of hinged object is defined by the texture of its manipulate
         <div class="flex max-w-[15rem]">
           <Video src={oa_pp_1_head_rgb} />
         </div>
-      </td>
-      <td>
-        <div class="flex max-w-[15rem]">
-          <Video src={oa_pp_4_head_rgb} />
-        </div>
-      </td>
-      <td>
-        <div class="flex max-w-[15rem]">
-          <Video src={oa_pp_2_head_rgb} />
-        </div>
-      </td>
-    </tr>
-
-    <tr>
-      <td>
         <div class="flex max-w-[15rem]">
           <Video src={pp_oa_p4_head_rgb} />
         </div>
       </td>
       <td>
         <div class="flex max-w-[15rem]">
+          <Video src={oa_pp_4_head_rgb} />
+        </div>
+        <div class="flex max-w-[15rem]">
           <Video src={oa_pp_6_head_rgb} />
         </div>
       </td>
       <td>
+        <div class="flex max-w-[15rem]">
+          <Video src={oa_pp_2_head_rgb} />
+        </div>
         <div class="flex max-w-[15rem]">
           <Video src={pp_oa_p6_head_rgb} />
         </div>
@@ -718,7 +515,6 @@ Notice: The texture of hinged object is defined by the texture of its manipulate
 </Table>
 
 #### **F-ACIL**-*Environment*
-
 <Table>
   <thead>
     <tr>
@@ -768,19 +564,12 @@ Notice: The texture of hinged object is defined by the texture of its manipulate
         </div>
       </td>
     </tr>
-    <tr>
-      <td>
-        
-      </td>
-      <td>
-        
-      </td>
-    </tr>
   </tbody>
 </Table>
 
 ## Conclusion
 
+In this work, we present **F-ACIL** to improve data efficiency in robot policy learning with factorized state representations and sequential factor-wise exploration. By decomposing the high-dimensional state space into object, action, and environment factor spaces, **F-ACIL** enables more systematic data collection.
 In this work, we present **F-ACIL** to improve data efficiency in robot policy learning with factorized state representations and sequential factor-wise exploration. By decomposing the high-dimensional state space into object, action, and environment factor spaces, **F-ACIL** enables more systematic data collection.
 
 ## BibTeX citation
